@@ -10,6 +10,7 @@ namespace Day04
             Console.WriteLine("Day 4");
 
             int fullyContained = 0;
+            int overlap = 0;
             
             foreach (var line in File.ReadLines("Input.txt"))
             {
@@ -25,14 +26,25 @@ namespace Day04
                 if (segments1Start <= segments2Start && segments1End >= segments2End)
                 {
                     fullyContained++;
+                    overlap++;
                 }
                 else if (segments2Start <= segments1Start && segments2End >= segments1End)
                 {
                     fullyContained++;
+                    overlap++;
+                }
+                else if (segments1Start >= segments2Start && segments1Start <= segments2End)
+                {
+                    overlap++;
+                }
+                else if (segments1End >= segments2Start && segments1End <= segments2End)
+                {
+                    overlap++;
                 }
             }
             
             Console.WriteLine("Part 1: " + fullyContained);
+            Console.WriteLine("Part 2: " + overlap);
         }
     }
 }
