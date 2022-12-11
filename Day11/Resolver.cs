@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,9 +6,16 @@ namespace Day11
 {
     public class Resolver
     {
-        public ulong Resolve(List<Monkey> monkeys)
+        public ulong Resolve(List<Monkey> monkeys, bool divideWorry, int iterations)
         {
-            for (int i = 0; i < 20; i++)
+            ulong shared = 1;
+            foreach (var monkey in monkeys)
+            {
+                shared *= monkey.testValue;
+            }
+            
+            
+            for (int i = 0; i < iterations; i++)
             {
                 foreach (var monkey in monkeys)
                 {
@@ -18,7 +26,11 @@ namespace Day11
                             ? oldValue
                             : ulong.Parse(monkey.operationValue);
                         ulong newValue = monkey.operationType == "+" ? oldValue + modifyValue : oldValue * modifyValue;
-                        newValue /= 3;
+
+                        if (divideWorry)
+                            newValue /= 3;
+                        else
+                            newValue %= shared;
 
                         if (newValue % monkey.testValue == 0)
                         {
@@ -32,6 +44,7 @@ namespace Day11
                         monkey.inspectionCount++;
                     }
                 }
+ 
             }
 
             var sorted = monkeys.OrderByDescending(m => m.inspectionCount).ToArray();
