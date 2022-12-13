@@ -1,19 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
 
 namespace Day13
 {
     public class PackageData
     {
-        private string _input;
+        public string Input { get; private set; }
         public List<PackageData> children = new();
         public int? value;
 
         public PackageData(string input)
         {
-            _input = input;
+            Input = input;
             Parse(input);
         }
 
@@ -42,7 +40,6 @@ namespace Day13
 
                     if (c == ',' && level == 0)
                     {
-                        //Console.WriteLine(s);
                         subStrings.Add(s);
                         s = "";
                         continue;
@@ -75,7 +72,7 @@ namespace Day13
 
         private Result Compare(PackageData left, PackageData right)
         {
-            Console.WriteLine($"{left._input} vs {right._input}");
+            //Console.WriteLine($"{left._input} vs {right._input}");
             
             //If both are a value, compare the values
             if (left.value != null && right.value != null)
