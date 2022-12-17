@@ -10,13 +10,23 @@ namespace Day16
 
         public List<string> History = new();
 
-        public ValvePath(Valve start, int cost)
+        public ValvePath(Valve start, int cost, int minutes = 30)
         {
             Path.Add(start);
-            RemainingTime = (30 - cost) - 1;
+            RemainingTime = (minutes - cost) - 1;
             Score = start.FlowRate * RemainingTime;
 
             History.Add($"Moved to {start.Name}. Releasing {start.FlowRate} for a score of {Score}. Remaining time {RemainingTime}");
+        }
+        
+        public ValvePath(ValvePath copyFrom)
+        {
+            RemainingTime = copyFrom.RemainingTime;
+            Path = new List<Valve>(copyFrom.Path);
+            Score = copyFrom.Score;
+            
+            History = new List<string>(copyFrom.History);
+            History.Add($"Waiting");
         }
         
         public ValvePath(ValvePath copyFrom, Valve next, int cost)

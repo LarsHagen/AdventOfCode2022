@@ -34,9 +34,6 @@ namespace Day16
 
         public void CalculatePathsToOtherValvesWithFlow()
         {
-            Console.WriteLine("");
-            Console.WriteLine("From " + Name);
-            
             Map map = new Map();
             map.Root = map.Nodes[this];
 
@@ -48,8 +45,6 @@ namespace Day16
                 map.Target = map.Nodes[target];
                 Grassfire.Run(map);
 
-                Console.WriteLine("To " + target.Name + ". Time: " + map.Target.Cost);
-                
                 CostToMoveToOtherValveWithFlow.Add(target, map.Target.Cost);
             }
         }
