@@ -52,5 +52,46 @@ namespace Day17
                 }
             }
         }
+        
+        public static List<Shape> GetShapes()
+        {
+            List<Shape> list = new();
+
+            list.Add(new Shape()
+            {
+                Map = new bool[,] {{true}, {true}, {true}, {true}},
+                Height = 1,
+                Width = 4
+            });
+
+            list.Add(new Shape()
+            {
+                Map = new bool[,] {{false, true, false}, {true, true, true}, {false, true, false}},
+                Height = 3,
+                Width = 3
+            });
+
+            list.Add(new Shape()
+            {
+                Map = new bool[,] {{true, false, false}, {true, false, false}, {true, true, true}},
+                Height = 3,
+                Width = 3
+            });
+
+            list.Add(new Shape()
+            {
+                Map = new bool[,] {{true, true, true, true}},
+                Height = 4,
+                Width = 1
+            });
+
+            list.Add(new Shape()
+            {
+                Map = new bool[,] {{true, true}, {true, true}},
+                Height = 2,
+                Width = 2
+            });
+            return list;
+        }
     }
 }
