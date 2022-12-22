@@ -4,7 +4,7 @@ namespace Day20
     {
         public Node Previous;
         public Node Next;
-        public int Value;
+        public long Value;
         public static Node Start;
 
         public void MoveForward()
